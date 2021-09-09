@@ -39,8 +39,13 @@ const postUsers = async (req, res) => {
 const deleteUsers = async (req, res) => {
   const { id } = req.params;
   // const usuario = await Usuario.findByIdAndDelete(id);
+
+  const uid = req.uid;
+
+  const usuarioAutenticado = req.usuario;
+
   const usuario = await Usuario.findByIdAndUpdate(id, {state: false});
-  res.json(usuario);
+  res.json({usuario, uid, usuarioAutenticado});
 };
 
 const putUsers = async (req, res) => {
